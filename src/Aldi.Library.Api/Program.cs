@@ -1,4 +1,7 @@
 
+using Aldi.Library.Api.Models.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Aldi.Library.Api;
 
 public class Program
@@ -7,6 +10,8 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.AddDbContext<LibraryDbContext>(options =>
+            options.UseInMemoryDatabase("LibraryDb"));
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
