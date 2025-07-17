@@ -1,9 +1,9 @@
 ﻿using Aldi.Library.Api.Models.Data;
 using Aldi.Library.Api.Models.Entities;
-using Aldi.Library.Api.Models.Repositories.Interfaces;
+using Aldi.Library.Api.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aldi.Library.Api.Models.Repositories;
+namespace Aldi.Library.Api.Repositories;
 
 public class BookRepository : IBookRepository
 {

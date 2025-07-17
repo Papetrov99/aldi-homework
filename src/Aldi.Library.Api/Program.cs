@@ -15,6 +15,7 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.AddSingleton(TimeProvider.System);
 
         var app = builder.Build();
 

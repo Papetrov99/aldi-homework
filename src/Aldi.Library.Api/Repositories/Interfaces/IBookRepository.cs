@@ -1,6 +1,6 @@
 ﻿using Aldi.Library.Api.Models.Entities;
 
-namespace Aldi.Library.Api.Models.Repositories.Interfaces;
+namespace Aldi.Library.Api.Repositories.Interfaces;
 
 public interface IBookRepository
 {
