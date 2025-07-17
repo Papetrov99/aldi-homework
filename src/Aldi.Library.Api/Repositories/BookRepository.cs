@@ -58,4 +58,11 @@ public class BookRepository : IBookRepository
 
         return result.Entity;
     }
+
+    public Task<Book?> Get(Guid id, CancellationToken cancellationToken = default)
+    {
+        return _dbSet
+            .Include(x => x.Loans)
+            .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+    }
 }

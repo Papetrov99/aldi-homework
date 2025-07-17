@@ -60,13 +60,13 @@ public class LoanRepository : ILoanRepository
         return await query.ToListAsync(cancellationToken);
     }
 
-    public async Task<bool> ReturnBook(Guid loanId, CancellationToken cancellationToken = default)
+    public async Task ReturnBook(Guid loanId, CancellationToken cancellationToken = default)
     {
         var loan = await _loans.Include(l => l.Book).FirstOrDefaultAsync(l => l.Id == loanId, cancellationToken);
 
         if (loan == null || loan.ReturnDate != null)
         {
-            return false;
+            return;
         }
 
         loan.ReturnDate = _timeProvider.GetUtcNow().UtcDateTime;
@@ -79,6 +79,6 @@ public class LoanRepository : ILoanRepository
 
         await _context.SaveChangesAsync(cancellationToken);
 
-        return true;
+        return;
     }
 }

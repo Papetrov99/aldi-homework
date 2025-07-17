@@ -11,4 +11,5 @@ public interface IBookRepository
     Task<Book> Add(Book book, CancellationToken cancellationToken = default);
     Task<Book> Update(Book book, CancellationToken cancellationToken = default);
     Task Delete(Book book, CancellationToken cancellationToken = default);
+    Task<Book?> Get(Guid id, CancellationToken cancellationToken = default);
 }
