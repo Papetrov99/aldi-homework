@@ -1,4 +1,5 @@
 ﻿using Aldi.Library.Api.Models.Entities;
+using Aldi.Library.Api.Models.Exceptions;
 using Aldi.Library.Api.Repositories.Interfaces;
 using Aldi.Library.Api.Services.Interfaces;
 
@@ -18,10 +19,12 @@ public class LoanService : ILoanService
 
     public async Task<Guid> BorrowBook(Guid userId, Guid bookId, DateTime dueDate, CancellationToken cancellationToken = default)
     {
-        var book = await _bookRepository.Get(bookId, cancellationToken);
-        if (book == null || !book.IsAvailable)
+        var book = await _bookRepository.Get(bookId, cancellationToken)
+            ?? throw BookExceptions.NotFound(bookId);
+
+        if (!book.IsAvailable)
         {
-            throw new InvalidOperationException("Book is not available.");
+            throw BookExceptions.NotAvailable(bookId);
         }
 
         book.IsAvailable = false;

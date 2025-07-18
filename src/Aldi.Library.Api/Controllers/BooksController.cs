@@ -1,11 +1,14 @@
 ﻿using Aldi.Library.Api.Models.DTOs;
 using Aldi.Library.Api.Models.Entities;
+using Aldi.Library.Api.Models.Exceptions;
 using Aldi.Library.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 
 namespace Aldi.Library.Api.Controllers;
 
 [ApiController]
+[Produces(MediaTypeNames.Application.Json)]
 [Route("api/v1/books")]
 public class BooksController : ControllerBase
 {

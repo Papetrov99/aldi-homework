@@ -1,10 +1,12 @@
 ﻿using Aldi.Library.Api.Models.Entities;
 using Aldi.Library.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 
 namespace Aldi.Library.Api.Controllers;
 
 [ApiController]
+[Produces(MediaTypeNames.Application.Json)]
 [Route("api/v1/loans")]
 public class LoansController : ControllerBase
 {

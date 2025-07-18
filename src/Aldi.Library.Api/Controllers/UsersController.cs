@@ -2,11 +2,13 @@
 using Aldi.Library.Api.Models.Entities;
 using Aldi.Library.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Mime;
 
 namespace Aldi.Library.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Produces(MediaTypeNames.Application.Json)]
+[Route("api/users")]
 public class UsersController : ControllerBase
 {
     private readonly IUserService _userService;
