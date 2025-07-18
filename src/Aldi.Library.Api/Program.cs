@@ -1,9 +1,12 @@
 using Aldi.Library.Api.Middlewares;
 using Aldi.Library.Api.Models.Data;
+using Aldi.Library.Api.Models.DTOs;
 using Aldi.Library.Api.Repositories;
 using Aldi.Library.Api.Repositories.Interfaces;
 using Aldi.Library.Api.Services;
 using Aldi.Library.Api.Services.Interfaces;
+using Aldi.Library.Api.Validators;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -27,6 +30,7 @@ public class Program
 
         builder.Services.AddLogging();
         builder.Services.AddHttpLogging(x => x.CombineLogs = true);
+        builder.Services.AddExceptionHandler<ValidationExceptionHandler>();
         builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
         builder.Services.AddProblemDetails();
         builder.Services.AddEndpointsApiExplorer();
@@ -39,6 +43,7 @@ public class Program
         builder.Services.AddScoped<IBookService, BookService>();
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<ILoanService, LoanService>();
+        builder.Services.AddScoped<IValidator<RegisterUserRequest>, RegisterUserValidator>();
 
         var app = builder.Build();
 

@@ -1,6 +1,5 @@
 ﻿using Aldi.Library.Api.Models.DTOs;
 using Aldi.Library.Api.Models.Entities;
-using Aldi.Library.Api.Models.Exceptions;
 using Aldi.Library.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
