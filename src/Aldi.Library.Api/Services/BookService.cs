@@ -1,5 +1,6 @@
 ﻿using Aldi.Library.Api.Models.DTOs;
 using Aldi.Library.Api.Models.Entities;
+using Aldi.Library.Api.Models.Exceptions;
 using Aldi.Library.Api.Repositories.Interfaces;
 using Aldi.Library.Api.Services.Interfaces;
 
@@ -28,9 +29,10 @@ public class BookService : IBookService
         }
 
         var hasActiveLoans = book.Loans!.Any(x => x.ReturnDate == null);
-        if (hasActiveLoans)
+        var isNotAvailable = !book.IsAvailable;
+        if (hasActiveLoans || isNotAvailable)
         {
-            throw new Exception(""); // TODO: fix
+            throw BookExceptions.HasActiveLoans(id);
         }
 
         await _bookRepository.Delete(book, cancellationToken);
