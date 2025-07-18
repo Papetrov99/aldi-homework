@@ -4,6 +4,7 @@ using Aldi.Library.Api.Repositories.Interfaces;
 using Aldi.Library.Api.Services;
 using Aldi.Library.Api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace Aldi.Library.Api;
 
@@ -15,7 +16,14 @@ public class Program
 
         builder.Services.AddDbContext<LibraryDbContext>(options =>
             options.UseInMemoryDatabase("LibraryDb"));
-        builder.Services.AddControllers();
+        builder.Services
+            .AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                options.JsonSerializerOptions.WriteIndented = true;
+            });
+
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddSingleton(TimeProvider.System);

@@ -4,7 +4,8 @@ namespace Aldi.Library.Api.Repositories.Interfaces;
 
 public interface ILoanRepository
 {
-    Task<Guid> BorrowBook(Guid userId, Guid bookId, DateTime dueDate, CancellationToken cancellationToken = default);
-    Task ReturnBook(Guid loanId, CancellationToken cancellationToken = default);
+    Task<Loan> Add(Loan loan, CancellationToken cancellationToken = default);
+    Task<Loan> Update(Loan loan, CancellationToken cancellationToken = default);
     Task<List<Loan>> List(bool? activeOnly = true, CancellationToken cancellationToken = default);
+    Task<Loan?> Get(Guid loanId, CancellationToken cancellationToken = default);
 }
